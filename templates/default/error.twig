@@ -1,0 +1,8 @@
+{% extends 'layout.twig' %}
+{% block head_title %}An error has occured{% endblock %}
+{% block content %}
+<h1>Oh dear!</h1>
+<p>It would appear something has gone wrong</p>
+<h2>Here is the problem</h2>
+<pre>{{ exception.message }}</pre>
+{% endblock %}
