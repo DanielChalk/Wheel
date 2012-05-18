@@ -1,0 +1,97 @@
+{% extends 'layout.twig' %}
+{% block head_title %}Help with Wheel{% endblock %}
+{% block content %}
+<h1>Help</h1>
+<p>Hear is a quick guide to using Wheel.</p>
+<ul>
+  <li><a href="#routes">Routes</a></li>
+  <li><a href="#controllers">Controllers</a></li>
+  <li><a href="#templates">Templates</a></li>
+</ul>
+<hr/>
+
+<article>
+<a name="routes"></a>
+<h2>Adding Routes</h2>
+In <strong>config/router.php</strong> add the following.
+<pre class="source">
+// This is a simple route which required that the url to match /yourpath
+$router->add('your_route', new stringRoute('/yourpath', 
+  new Action('Controller\\YourController', 'YourActionName')));
+  
+/* This is a regex route, which allows you to specify dynaminc addresses
+ * to have dynamic parts you must use grouping in regex, which is done using
+ * brackets.
+ * 
+ * This route will accept /your/*/route, anything word between "/your/"and 
+ * "/route" will work
+ */
+$router->add('your_regex_route', new regexRoute('/^\/your\/(\w*)\/route/', 
+  new Action('Controller\\YourController', 'YourAction')));
+</pre>
+</article>
+
+<article>
+<a name="controllers"></a>
+<h2>Adding Controllers</h2>
+<p>A controller is simply a class that extends <strong>Wheel\Actions</strong>
+and implements methods (actions) to be executed publically</p>
+<p><strong>An action must return a response, and it must be a string or
+  or implement a __toString() method.</strong></p>
+<h3>A simple controller</h3>
+<pre class="source">
+&lt;?php
+
+/* We must put our controller in the correct namespace as specified in the route
+ * This means it must also be in a directory accessible to the autoloader
+ */
+namespace Controller;
+
+//PHP needs to know what Actions is when we extend it
+use Wheel\Actions;
+
+//lets define our controller as specified in the route we made earlier
+class YourController extends Actions
+{
+  /**
+   * This action/method supports both the regex and string routes, by setting
+   * the $word argument as null, if we didn't, the framework would complain when
+   * using the string as we only get the argument from the regex route.
+   *
+   * note: all methods used for actions must have an "Action" suffix after
+   * the name you have specified in the route.
+   *
+   * @param string $word
+   */
+  public function youActionNameAction($word = null)
+  {
+    //here we are rendering a template and passing variables to them
+    return $this->get('twig')->render('your_controller/your_action_name.twig, 
+      array('word' => $word));
+  }
+}
+</pre>
+</article>
+
+<article>
+<a name="templates"></a>
+<h2>Adding Templates</h2>
+<p>Templates are done by creating twig files in the 
+<strong>templates/default</strong> directory. You can change the template 
+folder on <strong>config/configs.php</strong> but for now
+<strong>templates/default</strong> it is.</p>
+<p>The template must be loaded from within an action, we will use our action 
+written above as an example.</p>
+<p>In our controller we are asking twig to render template
+"<strong>your_controller/your_action_name.twig</strong>". Twig will look inside
+our configured template directory for this file.</p>
+<strong>templates/default/your_controller/your_action_name.twig</strong>
+<pre class="source">
+{{"{% if word %}"}}
+  Your word is <strong>{{word}}</strong>
+{{"{% else %}"}}
+  No word given
+{{"{% endif %}"}}
+</pre>
+</article>
+{% endblock %}

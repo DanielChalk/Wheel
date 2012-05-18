@@ -4,24 +4,25 @@
     <title>{% block head_title %}Give me a title{% endblock %}</title>
     {% spaceless %}
     <style>
-      body { font-family: Helvetica, Verdana, sans-serif; font-size: 12px }
-      #page { width: 600px; margin: auto }
+      body { font-family: 'Ubuntu', sans-serif; font-size: 12px; background-color: #efefef }
+      #page { background-color: #fff; width: 580px; margin: auto; padding: 10px; }
+      pre.source { padding: 1em; font-size: .9em; border: solid 1px #ccc; background-color: #efefef; }
     </style>
     {% endspaceless %}
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    {% spaceless %}
     <div id="page">
-      <nav>
-        {# i will need to add a twig extension for generating urls #}
-        <a href="/">Home</a>
+      <nav> 
+        <a href="/">Home</a> 
+        <a href="/help">Getting started</a>
       </nav>
       {% block content %}
         Give me some content please!
       {% endblock %}
       <footer>
         <hr/>
-        <p>Wheel Project &copy; Daniel Chalk {{"now"|date("Y")}} <a href="mailto:snatchfrigate[at]gmail.com?subject=wheel">snatchfrigate[at]gmail.com</a></p>
+        <p>Wheel Project &copy; Daniel Chalk {{ "now"|date("Y") }} <a href="mailto:snatchfrigate[at]gmail.com?subject=wheel">snatchfrigate[at]gmail.com</a></p>
       </footer>
     </div>
     {#  scripts go here so the page is given a change to load before the 
@@ -29,6 +30,5 @@
         Stuff like jQuery, Google libs or Piwik belong here!!!
     #}
     {% block scripts %}{% endblock %}
-    {% endspaceless %}
   </body>
 </html>
