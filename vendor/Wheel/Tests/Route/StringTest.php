@@ -1,8 +1,18 @@
 <?php
 
+/**
+ * This file is part of the invent-the-wheel project
+ * check out the license file ;)
+ */
+
 use Wheel\Route\String;
 use Wheel\Action;
 
+/**
+ * Test for string routes
+ * 
+ * @author Daniel Chalk <snatchfrigate@gmail.com>
+ */
 class Route_StringTest extends PHPUnit_Framework_TestCase
 {
   public function testRouteMatch()
