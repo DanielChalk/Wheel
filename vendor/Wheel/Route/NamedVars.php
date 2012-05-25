@@ -11,7 +11,8 @@ use Wheel\Route\Route;
 
 /**
  * Route with named vars
- * 
+ * There is quite a bit of regex and string manipulation  in these routes, 
+ * it's best to create them and cache.
  * @author Daniel Chalk <snatchfrigate@gmail.com>
  */
 class NamedVars extends Route

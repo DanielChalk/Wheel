@@ -65,7 +65,6 @@ class Action
    */
   public function execute(Services $services)
   {
-    
     $controller_name = $this->getClass();
     $action_name = $this->getAction().'Action';
     
@@ -102,14 +101,8 @@ class Action
      */
     $action = new \ReflectionMethod($controller_name, $action_name);
     
-    //get the required number of params
-    $req_params = $action->getNumberOfRequiredParameters();
-    
-    //do we have enough params to satisfy our action
-    if(count($this->getParams()) < $req_params)
-    {
-      throw new \Exception(sprintf('not enough argument for action %s:%s, you provided %d of %d', $this->class, $this->action, count($this->params), $req_params));
-    }
+    //build our params and check we have everything we need
+    $params = $this->parseParams($action);
     
     /* Time to call our action into action.
      * This action should return a response of some form, the response MUST be 
@@ -117,6 +110,74 @@ class Action
      * will do the trick.
      */
     return $action->invokeArgs($controller, $this->params);
+  }
+
+  protected function parseParams(\ReflectionMethod $action)
+  {
+    // Checking if our params are associative or sequential
+    $is_sequential = true;
+    
+    foreach(array_keys($this->getParams()) as $param)
+    {
+      if(!is_numeric($param))
+      {
+        $is_sequential = false;
+        break;
+      }
+    }
+    
+    if($is_sequential)
+    {
+      //get the required number of params
+      $req_params = $action->getNumberOfRequiredParameters();
+      
+      //do we have enough params to satisfy our action
+      if(count($this->getParams()) < $req_params)
+      {
+        throw new \Exception(sprintf('not enough argument for action %s:%s, you provided %d of %d', $this->class, $this->action, count($this->params), $req_params));
+      }
+      return $this->getParams();
+    }
+    
+    /* It would seem our params are not sequential as we've got to this point.
+     * We now need to match our params with the arguments of the method
+     */
+    
+    //This will be an ordered list of our methods params
+    $params = array();
+    $method_params = $action->getParameters();
+    $action_params = $this->params;
+    
+    foreach($method_params as $param)
+    {
+      //If we supplied a value, use it
+      if(isset($action_params[$param->getName()]))
+      {
+        $params[$param->getName()] = $action_params[$param->getName()];
+        //I am unsetting so we can see if we have any left over params later
+        unset($action_params[$param->getName()]);
+      }
+      //If the argument has a default value, use that
+      elseif($param->isDefaultValueAvailable())
+      {
+        $params[$param->getName()] = $param->getDefaultValue();
+      }
+      //Oh dear, it would seem that we are lacking a value for this argument
+      else
+      {
+        throw new \Exception(sprintf('param "%s" expected', $param->getName()));
+      }
+    }
+    /* Let the developer know we have a problem, we have values left :S
+     * I'm tempted to log things like that or show warnings. Till those systems
+     * are available I throw an exception.
+     */
+    if(count($action_params))
+    {
+      throw new \Exception(sprintf('Too many params. Exepected %d but received %d', count($method_params), count($params)+count($action_params)));
+    }
+    
+    return $params;
   }
 
 }

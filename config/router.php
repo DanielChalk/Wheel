@@ -16,6 +16,7 @@
 use Wheel\Router;
 use Wheel\Route\String as stringRoute;
 use Wheel\Route\Regex as regexRoute;
+use Wheel\Route\NamedVars as varRoute;
 use Wheel\Action;
 
 $router = $services->get('router');
@@ -31,6 +32,8 @@ if(@$config['env'] == 'dev')
   //we got to have our test modules 
   $router->add('test', new stringRoute('/test', new Action('Controller\\Test', 'index')));
   $router->add('regex_test', new regexRoute('/^\/hello\/(\w*)/', new Action('Controller\\Test', 'hello')));  
+  
+  $router->add('named', new varRoute('/hi/{first_name}/{last_name}', new Action('Controller\\Test', 'hello')));
 }
 
 return $router;
