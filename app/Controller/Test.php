@@ -15,8 +15,8 @@ use Wheel\Actions;
  */
 class Test extends Actions
 {
-  public function helloAction($name)
+  public function helloAction($first_name, $last_name = null)
   {
-    return $this->get('twig')->render('test/hello.twig', array('name' => $name));
+    return $this->get('twig')->render('test/hello.twig', array('name' => trim(sprintf('%s %s', $first_name, $last_name))));
   }
 }
