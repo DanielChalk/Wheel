@@ -12,7 +12,7 @@
  * @author Daniel Chalk <snatchfrigate@gmail.com>
  */
 
-require_once __DIR__ .'/../lib/Wheel/Loader.php';
+require_once __DIR__ .'/../vendor/Wheel/Loader.php';
 require_once __DIR__ .'/../vendor/Twig/lib/Twig/Autoloader.php';
 
 Twig_Autoloader::register();
@@ -25,7 +25,7 @@ $loader->setFallback(__DIR__.'/../src');
 //register our namespaces
 $loader->registerNamespaces(array(
   //The Wheel namespace for parts of the framework
-  'Wheel' => __DIR__.'/../lib',
+  'Wheel' => __DIR__.'/../vendor',
 ));
 
 return $loader;
