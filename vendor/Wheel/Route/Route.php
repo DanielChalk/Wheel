@@ -8,6 +8,7 @@
 namespace Wheel\Route;
 
 use Wheel\Action;
+
 /**
  * Route base class.
  * 
@@ -26,9 +27,12 @@ abstract class Route
   {
     $this->path = $path;
     $this->action = $action;
+    $this->configure();
   }
   
   public abstract function isMatch($path);
   
   public abstract function getAction($path);
+  
+  protected function configure() {}
 }
