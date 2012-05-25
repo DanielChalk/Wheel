@@ -30,13 +30,11 @@ class NamedVars extends Route
     $params;
     preg_match($this->_regex, $path, $params);
     unset($params[0]);
-    // reset keys
-    $params = array_values($params);
     
     // get the values from the $params array into $this->_params
     foreach(array_keys($this->_params) as $i => $key)
     {
-      $this->_params[$key] = $params[$i];
+      $this->_params[$key] = $params[$i+1];
     }
     
     // setParams returns $this (Wheel\Action)
