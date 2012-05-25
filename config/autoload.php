@@ -20,7 +20,7 @@ use Wheel\Loader;
 
 $loader = new Loader();
 //src is where the application will live
-$loader->setFallback(__DIR__.'/../src');
+$loader->setFallback(__DIR__.'/../app');
 
 //register our namespaces
 $loader->registerNamespaces(array(
