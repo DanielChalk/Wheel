@@ -54,7 +54,9 @@ $front = new Front($services);
  * for reasonably static pages
  */
  
-$response = $front->dispatch(str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
+$path = urldecode(str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
+ 
+$response = $front->dispatch($path);
 
 /* Our response must either be a string or an object that implements the 
  * __toString() method
