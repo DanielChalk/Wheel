@@ -13,6 +13,7 @@
  
 use Wheel\Services;
 use Wheel\Router;
+use Wheel\Config;
 
 $services = new Services();
 
@@ -29,6 +30,6 @@ $services->addConfigs(array(
 $services->addServices(array(
   'router'  => new Router(),
   'twig'    => new Twig_Environment(new Twig_Loader_Filesystem($config['twig']['template_dir']), $config['twig']['config']),
+  'config'  => new Config($config),
 ));
-
 return $services;

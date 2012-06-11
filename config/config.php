@@ -25,6 +25,9 @@ $config = array(
       'public' => dirname(__FILE__).'/../web',
       'cache' => dirname(__FILE__).'/../cache',
     ),
+    'file' => array(
+      'config.php' => __FILE__,
+    )
   ),
   'prod' => array(
     'twig' => array(
