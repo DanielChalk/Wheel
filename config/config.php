@@ -18,7 +18,13 @@ $config = array(
     'twig' => array(
       'config' => array(),
       'template_dir' => __DIR__.'/../templates/default',
-    )
+    ),
+    'path' => array(
+      'root' => dirname(__FILE__).'/..',
+      'config' => dirname(__FILE__),
+      'public' => dirname(__FILE__).'/../web',
+      'cache' => dirname(__FILE__).'/../cache',
+    ),
   ),
   'prod' => array(
     'twig' => array(
