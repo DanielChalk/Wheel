@@ -18,16 +18,16 @@ namespace Wheel;
 abstract class Actions
 {
   /**
-   * @var Wheel\Services
+   * @var Wheel\Front
    */
-  protected $services;
+  protected $front;
   
   /**
    * @param Wheel\Service
    */
-  public function __construct(Services $services)
+  public function __construct(Front $front)
   {
-    $this->services = $services;
+    $this->front = $front;
   }
   
   /**
@@ -36,6 +36,6 @@ abstract class Actions
    */
   public function get($service_name)
   {
-    return $this->services->get($service_name);
+    return $this->front->getServices()->get($service_name);
   }
 }

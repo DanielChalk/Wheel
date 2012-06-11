@@ -45,7 +45,7 @@ $router = include __DIR__.'/../config/router.php';
  * $services much be passed to it so it can pass services onto the controllers
  * for our actions to make use of. 
  */
-$front = new Front($services);
+$front = new Front($services, $config);
 
 /* We are now dispatching our front controller to find and execute an action 
  * based on the request.

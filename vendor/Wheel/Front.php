@@ -22,12 +22,19 @@ class Front
   protected $services;
   
   /**
+   * @var array
+   */
+  protected $config;
+ 
+  
+  /**
    * Front constructor
    * @param Wheel\Services $services
    */
-  public function __construct(Services $services)
+  public function __construct(Services $services, array $config)
   {
     $this->services = $services;
+    $this->config = $config;
   }
   
   public function dispatch($path = null)
@@ -35,7 +42,7 @@ class Front
     try
     {
       $action = $this->getAction($path);
-      return $action->execute($this->services);
+      return $action->execute($this);
     }
     catch(\Exception $e)
     {
@@ -59,5 +66,18 @@ class Front
     }
     
     return $route->getAction($path);
+  }
+  
+  public function getConfig()
+  {
+    return $this->config;
+  }
+  
+  /**
+   * @return Wheel\Services
+   */
+  public function getServices()
+  {
+    return $this->services;
   }
 }

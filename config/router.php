@@ -32,8 +32,10 @@ if(@$config['env'] == 'dev')
   //we got to have our test modules 
   $router->add('test', new stringRoute('/test', new Action('Controller\\Test', 'index')));
   $router->add('regex_test', new regexRoute('/^\/hello\/(\w*)/', new Action('Controller\\Test', 'hello')));  
-  
   $router->add('named', new varRoute('/hi/{first_name}/{last_name}', new Action('Controller\\Test', 'hello')));
+  
+  //dev tools
+  $router->add('dev.config.config', new varRoute('/_tools/config/config', new Action('Developer\\Controller\\Configuration', 'config')));
 }
 
 return $router;

@@ -63,7 +63,7 @@ class Action
    * @param Wheel\Services $services
    * @return mixed
    */
-  public function execute(Services $services)
+  public function execute(Front $front)
   {
     $controller_name = $this->getClass();
     $action_name = $this->getAction().'Action';
@@ -94,7 +94,7 @@ class Action
     /* we now know our controller and method exists to we will first create a
      * new instance of our controller
      */ 
-    $controller = $reflector->newInstanceArgs(array($services));
+    $controller = $reflector->newInstanceArgs(array($front));
     
     /* I am now reflecting the method we will be using to make sure the correct
      * number of arguments are being used.
