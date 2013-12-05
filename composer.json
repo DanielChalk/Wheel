@@ -1,0 +1,21 @@
+{
+    "name": "snatchfrigate/wheel",
+    "description": "Playground PHP Framework",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Daniel Chalk",
+            "email": "snatchfrigate@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "twig/twig": "v1.14.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "":"app", //default to looking here for custom code
+            "Wheel\\": "lib"
+        }
+    }
+}

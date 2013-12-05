@@ -27,7 +27,7 @@ $router->add('homepage', new stringRoute('/', new Action('Controller\\Home', 'in
 $router->add('homepage_', new stringRoute('', new Action('Controller\\Home', 'index')));
 $router->add('help', new stringRoute('/help', new Action('Controller\\Help', 'index')));
 
-if(@$config['env'] == 'dev')
+if($config['env'] == 'dev')
 {
   //we got to have our test modules 
   $router->add('test', new stringRoute('/test', new Action('Controller\\Test', 'index')));
