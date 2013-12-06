@@ -7,28 +7,23 @@
 <p>It's lovely knowing a framework, but that doesn't really mean your a web 
 developer. Frameworks are tools at your desposal once you have a reasonable 
 understanding of creating web applications or even your own frameworks</p>
-<p>This is my attempt at hashing out a framework really quickly</p>
+<p>This is my attempt at hashing out a framework though rushed</p>
 <p>So far I have spent about 8 hour on this project</p>
-<h2>Download</h2>
-<p>You can download the current version here from <a href="https://snatchfrigate.repositoryhosting.com/trac/snatchfrigate_whl/downloads/1">https://snatchfrigate.repositoryhosting.com/trac/snatchfrigate_whl/downloads/1</a>.</p>
 <h2>Current features:</h2>
 <h3>Routing</h3>
 <p>We have a router that supports regex, allowing arguments to be passed to
   actions.</p>
 <h3>Service Container</h3>
 <p>A lightweight service container, that allows you to put the service straight
-in or add a config, for it to be initialised later on (handy for databases as 
-connecting to them is an expensive process).</p>
+in or add a config, for it to be initialised later on.</p>
 <h3>Templating (via Twig)</h3>
 <p>I initially planned on writing my own template engine with caching through
-  the use of object buffering to parse the templates. but chose not to re-invent
+  the use of object buffering to parse the templates. but chose not to _reinvent_
   the wheel here simply to save time.</p>
 <h2>Planned features:</h2>
 <h3>Some form of Active Record or ORM</h3>
 <p>I'm not decided on this yet, but implementing active records is certainly easier
   than a full blown ORM.</p>
 <h3>Caching</h3>
-<p>We currently have template caching via twig, but what about caching data used
-  in our controllers, or entire pages for that matter. Caching our settings or
-  routes in memory may also be benificial.</p>
+<p>We currently have template caching via twig, more to come.</p>
 {% endblock %}
