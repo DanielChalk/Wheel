@@ -17,13 +17,13 @@ $config = array(
   'base' => array(
     'twig' => array(
       'config' => array(),
-      'template_dir' => __DIR__.'/../templates/default',
+      'template_dir' => dirname(__DIR__).'/templates/default',
     )
   ),
   'prod' => array(
     'twig' => array(
       'config' => array(
-        'cache' => __DIR__.'/../cache/twig'),
+        'cache' => dirname(__DIR__).'/cache/twig'),
     )
   ),
   'dev' => array(

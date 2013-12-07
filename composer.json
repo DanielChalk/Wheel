@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-0": {
-            "":"app", //default to looking here for custom code
+            "":"app",
             "Wheel\\": "lib"
         }
     }

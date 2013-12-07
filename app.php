@@ -8,29 +8,30 @@
 
  use Wheel\Front;
 
+/* We will make an instance of Wheel\Loader here and add all the relevant paths
+ * we will then register the loader here or in autoload.php
+ */
+$loader = include __DIR__.'/autoload.php';
+
 /* Our settings will eventually live here, data such as database connection info
  * and caching rules should live there then the autoload.php, services.php and
  * router.php files can make use of them.
  * 
  * this file is dependant on env being defined.
  */
-$config = include dirname(__DIR__).'/config/config.php';
+$config = include __DIR__.'/config/config.php';
 
-/* We will make an instance of Wheel\Loader here and add all the relevant paths
- * we will then register the loader here or in autoload.php
- */
-$loader = include dirname(__DIR__).'/config/autoload.php';
 
 /* Just like the loader we are defining our service contrainer (Wheel\Service)
  * in the file below and returning it here
  */ 
-$services = include dirname(__DIR__).'/config/services.php';
+$services = include __DIR__.'/services.php';
 
 /* Initialising and configuring our router for all our pages, we current support
  * two types of route. One a static path and another for dynamic paths through
  * the use of regex.
  */
-$router = include dirname(__DIR__).'/config/router.php';
+$router = include __DIR__.'/config/router.php';
 
 /* Make an instance of our front controller, this is where all the magic starts
  * to happen.

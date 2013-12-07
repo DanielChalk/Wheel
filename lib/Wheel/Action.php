@@ -6,7 +6,7 @@
  */
 
 namespace Wheel;
-use Wheel\Services;
+use Wheel\Service;
 
 /**
  * Action
@@ -63,7 +63,7 @@ class Action
    * @param Wheel\Services $services
    * @return mixed
    */
-  public function execute(Services $services)
+  public function execute(Service $services)
   {
     $controller_name = $this->getClass();
     $action_name = $this->getAction().'Action';

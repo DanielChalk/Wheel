@@ -25,7 +25,7 @@ class Front
    * Front constructor
    * @param Wheel\Services $services
    */
-  public function __construct(Services $services)
+  public function __construct(Service $services)
   {
     $this->services = $services;
   }

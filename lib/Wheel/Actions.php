@@ -25,7 +25,7 @@ abstract class Actions
   /**
    * @param Wheel\Service
    */
-  public function __construct(Services $services)
+  public function __construct(Service $services)
   {
     $this->services = $services;
   }
